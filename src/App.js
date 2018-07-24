@@ -13,14 +13,14 @@ class App extends Component {
     studentAddress: '',
     courseIdNeedVerification: '',
     verificationMessage: '',
-    message: 'The system is up to date!'
+    message: 'Hệ thống đã sẵn sàng!'
   }
 
   applyCert = async event => {
     event.preventDefault();
 
     this.setState({
-      message: 'Waiting for your transaction to go through the Rinkeby network ...'
+      message: 'Vui lòng chờ giao dịch thực hiện trên mạng lưới Rinkeby ...'
     });
 
     const accounts = await web3.eth.getAccounts();
@@ -34,7 +34,7 @@ class App extends Component {
     });
 
     this.setState({
-      message: 'The system is up to date!'
+      message: 'Hệ thống đã sẵn sàng!'
     });
   }
 
@@ -42,7 +42,7 @@ class App extends Component {
     event.preventDefault();
 
     this.setState({
-      message: 'Waiting for your transaction to go through the Rinkeby network ...'
+      message: 'Vui lòng chờ giao dịch thực hiện trên mạng lưới Rinkeby ...'
     });
 
     const accounts = await web3.eth.getAccounts();
@@ -52,16 +52,16 @@ class App extends Component {
 
     if (courseName) {
       this.setState({
-        verificationMessage: 'This student attended the course ' + courseName + '.'
+        verificationMessage: 'Học viên tại địa chỉ trên đã hoàn thành khoá học ' + courseName + '.'
       });
     } else {
       this.setState({
-        verificationMessage: 'This student was unsure to attend the course.'
+        verificationMessage: 'Chúng tôi không xác nhận học viên trên có hoàn thành khoá học.'
       });
     }
 
     this.setState({
-      message: 'The system is up to date!'
+      message: 'Hệ thống đã sẵn sàng!'
     });
   }
 
@@ -69,13 +69,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Mr. Chainblockz' Certification</h1>
+          <h1>Chứng chỉ của Học viện Mr. Chainblockz</h1>
         </header>
+
+        <h3>Hướng dẫn</h3>
+        <p>
+          1. Vui lòng sử dụng trình duyệt Chrome và cài đặt Metamask với mạng lưới Rinkeby <br />
+          2. Vui lòng điền thông tin Họ tên, email, số điện thoại chính xác để chúng tôi dễ dàng thẩm định <br />
+          3. Sử dụng Mã lớp học như sau: 1 - Ethereum All-in-One; 2 - Ethereum Basic 2; 3 - Ethereum Basic 3
+        </p>
 
         <Grid>
           <Row>
             <Col cs={6} md={6}>
-              <h3>Apply for certification</h3>
+              <h3>Yêu cầu cấp chứng chỉ</h3>
               <Form onSubmit={ this.applyCert }>
                 <Table responsive>
                   <tbody>
@@ -117,19 +124,19 @@ class App extends Component {
                     </tr>
                     <tr>
                       <td></td>
-                      <td><Button bsStyle="primary" type="submit">Apply</Button></td>
+                      <td><Button bsStyle="primary" type="submit">Gửi</Button></td>
                     </tr>
                   </tbody>
                 </Table>
               </Form>
             </Col>
             <Col cs={6} md={6}>
-              <h3>Verify certification</h3>
+              <h3>Xác nhận chứng chỉ</h3>
               <Form onSubmit={ this.verifyCert }>
                 <Table responsive>
                   <tbody>
                     <tr>
-                      <td><label>Student's Address</label></td>
+                      <td><label>Tài khoản Ethereum của Học viên</label></td>
                       <td>
                         <input 
                           value={ this.state.studentAddress }
@@ -154,7 +161,7 @@ class App extends Component {
                     </tr>
                     <tr>
                       <td></td>
-                      <td><Button bsStyle="primary" type="submit">Verify</Button></td>
+                      <td><Button bsStyle="primary" type="submit">Xác nhận</Button></td>
                     </tr>
                     <tr>
                       <td></td>
